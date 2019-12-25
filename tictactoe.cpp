@@ -3,7 +3,7 @@
 #include <time.h>
 #include <vector>
 
-void display_board(std::vector<char>& board);
+void display_board(std::vector<char> board);
 void player_move(std::vector<char>& board);
 void computer_move(std::vector<char>& board);
 bool contains_winner(std::vector<char> board);
@@ -50,7 +50,7 @@ int main()
 }
 
 //display board function
-void display_board(std::vector<char>& board)
+void display_board(std::vector<char> board)
 {
     std::cout << "| " << board[0] << " | " << board[1] << " | " << board[2] << " |" << "      | 0 | 1 | 2 |\n";
     std::cout << "| " << board[3] << " | " << board[4] << " | " << board[5] << " |" << "      | 3 | 4 | 5 |\n";
