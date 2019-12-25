@@ -31,6 +31,7 @@ int main()
         computer_move(board);
 
         //check for win conditons or draw conditons
+        
         if (contains_winner(board))
         {
             std::cout << "SOMEONE WON THE GAME";
@@ -41,6 +42,7 @@ int main()
             std::cout << "DRAW GAME";
             isGameOver = true;
         }
+        
     }
     std::cout << "\nTEST END";
 
@@ -50,13 +52,9 @@ int main()
 //display board function
 void display_board(std::vector<char>& board)
 {
-    std::cout << "| " << board[0] << " | " << board[1] << " | " << board[2] << " |\n";
-    std::cout << "| " << board[3] << " | " << board[4] << " | " << board[5] << " |\n";
-    std::cout << "| " << board[6] << " | " << board[7] << " | " << board[8] << " |\n\n";
-    std::cout << "Move set:\n";
-    std::cout << "| 0 | 1 | 2 |\n";
-    std::cout << "| 3 | 4 | 5 |\n";
-    std::cout << "| 6 | 7 | 8 |\n\n";
+    std::cout << "| " << board[0] << " | " << board[1] << " | " << board[2] << " |" << "      | 0 | 1 | 2 |\n";
+    std::cout << "| " << board[3] << " | " << board[4] << " | " << board[5] << " |" << "      | 3 | 4 | 5 |\n";
+    std::cout << "| " << board[6] << " | " << board[7] << " | " << board[8] << " |" << "      | 6 | 7 | 8 |\n\n";
 }
 
 //player move function
@@ -68,7 +66,7 @@ void player_move(std::vector<char>& board)
     //Player will be Xs, computer will be Os
     while (!isMoveValid)
     {
-        if (board[choice] == '-') 
+        if (board[choice] == '-' && choice < 9) 
         {
             board[choice] = 'X';
             display_board(board);
@@ -118,42 +116,42 @@ bool contains_winner(std::vector<char> board)
     */
 
    //checks top side
-   if (board[0] == board[1] && board[0] == board[2] && board[1] == board[2])
+   if (board[0] == board[1] && board[0] == board[2] && board[1] == board[2] && board[0] != '-')
     {
         return true;
     }
     //checks left side
-    if (board[0] == board[3] && board[0] == board[6] && board[3] == board[6])
+    if (board[0] == board[3] && board[0] == board[6] && board[3] == board[6] && board[0] != '-')
     {
         return true;
     }
     //checks right side
-    if (board[2] == board[5] && board[2] == board[8] && board[5] == board[8])
+    if (board[2] == board[5] && board[2] == board[8] && board[5] == board[8] && board[2] != '-')
     {
         return true;
     }
     //checks bottom side
-    if (board[6] == board[7] && board[6] == board[8] && board[7] == board[8])
+    if (board[6] == board[7] && board[6] == board[8] && board[7] == board[8] && board[6] != '-')
     {
         return true;
     }
     //checks middle row
-    if (board[3] == board[4] && board[3] == board[5] && board[4] == board[5])
+    if (board[3] == board[4] && board[3] == board[5] && board[4] == board[5] && board[3] != '-')
     {
         return true;
     }
     //checks middle column
-    if (board[1] == board[4] && board[1] == board[7] && board[4] == board[7])
+    if (board[1] == board[4] && board[1] == board[7] && board[4] == board[7] && board[1] != '-')
     {
         return true;
     }
     //checks diagonal from top right to bottom left
-    if (board[2] == board[4] && board[2] == board[6] && board[4] == board[6])
+    if (board[2] == board[4] && board[2] == board[6] && board[4] == board[6] && board[2] != '-')
     {
         return true;
     }
     //checks diagonal from top left to bottom right
-    if (board[0] == board[4] && board[0] == board[8] && board[4] == board[8])
+    if (board[0] == board[4] && board[0] == board[8] && board[4] == board[8] && board[0] != '-')
     {
         return true;
     }
