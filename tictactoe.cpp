@@ -1,15 +1,16 @@
-#include <iostream>
-#include <cmath>
-#include <time.h>
-#include <vector>
+#include "tictactoe.h"
 
-void display_board(std::vector<char> board);
-void player_move(std::vector<char>& board);
-void computer_move(std::vector<char>& board);
-bool contains_winner(std::vector<char> board);
-bool contains_draw(std::vector<char> board);
+TicTacToe::TicTacToe()
+{
+    std::cout << "GAME STARTING AND INITIALIZING\n\n";
+}
 
-int main()
+TicTacToe::~TicTacToe()
+{
+    std::cout << "GAME END\n";
+}
+
+void TicTacToe::run()
 {
     //init random number seed
     srand (time(0));
@@ -20,37 +21,34 @@ int main()
     std::fill_n(board.begin(), 9, '-');
 
     //display initial board
-    display_board(board);
+    TicTacToe::display_board(board);
 
     while (!isGameOver)
     {
         //have player select
-        player_move(board);
+        TicTacToe::player_move(board);
         
         //have computer select
-        computer_move(board);
+        TicTacToe::computer_move(board);
 
         //check for win conditons or draw conditons
         
         if (contains_winner(board))
         {
-            std::cout << "SOMEONE WON THE GAME";
+            std::cout << "SOMEONE WON THE GAME\n\n";
             isGameOver = true;
         }
         else if (contains_draw(board))
         {
-            std::cout << "DRAW GAME";
+            std::cout << "DRAW GAME\n\n";
             isGameOver = true;
         }
         
     }
-    std::cout << "\nTEST END";
-
-    return 0;
 }
 
 //display board function
-void display_board(std::vector<char> board)
+void TicTacToe::display_board(std::vector<char> board)
 {
     std::cout << "| " << board[0] << " | " << board[1] << " | " << board[2] << " |" << "      | 0 | 1 | 2 |\n";
     std::cout << "| " << board[3] << " | " << board[4] << " | " << board[5] << " |" << "      | 3 | 4 | 5 |\n";
@@ -58,7 +56,7 @@ void display_board(std::vector<char> board)
 }
 
 //player move function
-void player_move(std::vector<char>& board)
+void TicTacToe::player_move(std::vector<char>& board)
 {
     bool isMoveValid = false;
     int choice;
@@ -69,19 +67,19 @@ void player_move(std::vector<char>& board)
         if (board[choice] == '-' && choice < 9) 
         {
             board[choice] = 'X';
-            display_board(board);
+            TicTacToe::display_board(board);
             isMoveValid = true;
         } 
         else 
         {
             std::cout << "invalid move. try again\n";
-            display_board(board);
+            TicTacToe::display_board(board);
             std::cin >> choice;
         }
     }
 }
 
-void computer_move(std::vector<char>& board)
+void TicTacToe::computer_move(std::vector<char>& board)
 {
 
     bool isMoveValid = false;
@@ -91,7 +89,7 @@ void computer_move(std::vector<char>& board)
         if (board[move] == '-')
         {
             board[move] = 'O';
-            display_board(board);
+            TicTacToe::display_board(board);
             isMoveValid = true;
         }
         else
@@ -106,7 +104,7 @@ void computer_move(std::vector<char>& board)
     TODO: contains_winner() function is broken. it will always find a winner because '-' counts.
     Need to explicitly define Xs and Os in a really nice way.
 */
-bool contains_winner(std::vector<char> board)
+bool TicTacToe::contains_winner(std::vector<char> board)
 {
     /*
     This is how board looks like:
@@ -159,7 +157,7 @@ bool contains_winner(std::vector<char> board)
     return false;
 }
 
-bool contains_draw(std::vector<char> board)
+bool TicTacToe::contains_draw(std::vector<char> board)
 {
     for (int i = 0; i < board.size(); i++)
     {
